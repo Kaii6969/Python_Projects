@@ -1,27 +1,27 @@
 import random
 import time
 
-compteur = 0 #compteur pour boucle while
-mdp = 0 #définition du mot de passe final
-check = 'non' #le check est sur non de base pour que la boucle recrée un mot de passe tant qu'il nous plait pas
+compteur = 0 #counter for while loop
+mdp = 0 #password creation
+check = 'no' #check is on 'no' by default, which never stop the loop
 data = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','!','#','/',';','.','?',':','_','-']
-#la data est une liste qui va contenir tout les caractères pour le mot de passe
-app_mdp = str(input("Pour quel application voulez-vous générer un nouveau mot de passe ? ")) #on définit le nom de l'app correspondant au mot de passe
-mdp_length = int(input("De Combien de caractère voulez-vous que le mot de passe soit constitué ? ")) #le mot de passe peut contenir autant de caractères que voulu
-while check == 'non': #tant que le mot de passe ne plait pas la boucle tourne
-    mdp = "" #le mot de passe est remis à 0 avant chaque boucle
-    while compteur<mdp_length: #le compteur doit atteindre le nombre de caractère voulu par l'utilisateur
+#data represent every character that the password will contain
+app_mdp = str(input("For which application do you want to generate a new password?")) #the name of the app that matches with the password
+mdp_length = int(input("How many characters do you want the password to be?")) #the password can contain as many character as you want
+while check == 'no': #while password isn't okay for you, the loop continue
+    mdp = "" #password is set to 0 before every loop
+    while compteur<mdp_length: #counter has to reach the user's will
         compteur = compteur+1
-        mdp = mdp + random.choice(data) #chaque caractère est pris aléatoirement dans la liste, et est ajouté au caractère précédemment choisi
-    compteur = 0 #compteur remis à 0 pour se préparer à une autre boucle
+        mdp = mdp + random.choice(data) #each character is randomly picked, and is added to the last one freshly picked
+    compteur = 0 #counter set to 0 and getting ready for another loop
     print(mdp)
-    check = input("Ce mot de passe vous convient-il ? (oui/non)\n") #si oui, on quitte la boucle, sinon elle recommence
-print("Votre mot de passe " + app_mdp + " est : " + mdp + '\n')
+    check = input("Is this password right for you ? (yes/no)\n") #if yes, break the loop, else, the loop start again
+print("Your Password for " + app_mdp + " is : " + mdp + '\n')
 
-fichier = open("mot_de_passe.txt", "a") #on crée un fichier en mode ajout de valeur, si le fichier n'existe pas il le crée
-fichier.write(app_mdp + " : " + mdp + '\n') #ajout du mot de passe dans un fichier avec légere mise en page pour être plus lisible
-fichier.close() #ferme la fonction fichier, plus rien ne se passera dedans
+fichier = open("password.txt", "a") #creating a file in adding mode, if the file doesn't exist, python create it
+fichier.write(app_mdp + " : " + mdp + '\n') #the password is added in the file
+fichier.close()
 
-print("Le nouveau mot de passe est maintenant enregistré dans 'mot_de_passe.txt'")
+print("This new password is now save in 'password.txt'")
 time.sleep(5)
 exit()
